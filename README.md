@@ -3,5 +3,7 @@
 ## Polimorfismo 
 ### Paradigma Objeto 
 Mensaje:
+
 Encapsulamiento:
+
 Acoplamiento:
