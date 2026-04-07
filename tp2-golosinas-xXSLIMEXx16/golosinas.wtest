@@ -1,0 +1,338 @@
+import golosinas.*
+
+describe "test de bombon" {
+	const bombon = new Bombon()
+    test "peso inicial" {
+        assert.equals(15, bombon.peso())
+    }
+    test "precio" {
+        assert.equals(5, bombon.precio())
+    }
+    test "mordiscos" {
+        bombon.mordisco()
+        assert.equals(11, bombon.peso())
+        
+        bombon.mordisco()
+        assert.equals(7.8, bombon.peso())
+    }
+    test "gusto" {
+        assert.equals("Frutilla", bombon.sabor())
+    }
+    test "libre de gluten" {
+        assert.that(bombon.libre_gluten())
+    }
+    
+}
+
+describe "Test de alfajor" {
+  const alfajor = new Alfajor()
+  test "Precio" {
+	  assert.equals(12, alfajor.precio())
+	}
+  test "Peso inical" {
+	assert.equals(300, alfajor.peso())
+  }
+
+  test "Sabor" {
+	assert.equals("Chocolate", alfajor.sabor())
+  }
+
+  test "Libre de gluten" {
+	assert.notThat(alfajor.libre_gluten())
+  }
+
+  test "mordisco" {
+	alfajor.mordisco()
+	assert.equals(240, alfajor.peso())
+
+	alfajor.mordisco()
+	assert.equals(192, alfajor.peso())
+
+	alfajor.mordisco()
+	assert.equals(153.6, alfajor.peso())
+  }
+}
+
+describe "Test de Caramelo" {
+	const caramelo = new Caramelo()
+  test "Precio" {
+	  assert.equals(1, caramelo.precio())
+	}
+  test "Peso inical" {
+	assert.equals(5, caramelo.peso())
+  }
+
+  test "Sabor" {
+	assert.equals("Frutilla", caramelo.sabor())
+  }
+
+  test "Libre de gluten" {
+	assert.that(caramelo.libre_gluten())
+  }
+
+  test "mordisco" {
+	caramelo.mordisco()
+	assert.equals(4, caramelo.peso())
+
+	caramelo.mordisco()
+	assert.equals(3, caramelo.peso())
+
+	caramelo.mordisco()
+	assert.equals(2, caramelo.peso())
+  }
+}
+
+describe "Chupetin" {
+	const chupetin = new Chupetin()
+  test "precio" {
+	assert.equals(2, chupetin.precio())
+  }
+
+  test "Peso Inicial" {
+	assert.equals(7, chupetin.peso())
+  }
+
+  test "Sabor" {
+	assert.equals("Naranja", chupetin.sabor())
+  }
+
+  test "Libre de gluten" {
+	assert.that(chupetin.libre_gluten())
+  }
+
+  test "Mordisco" {
+	chupetin.mordisco()
+	assert.equals(6.3, chupetin.peso())
+
+	chupetin.mordisco()
+	assert.equals(5.67, chupetin.peso())
+
+	chupetin.mordisco()
+	assert.equals(5.103, chupetin.peso())
+
+	chupetin.mordisco()
+	chupetin.mordisco()
+	chupetin.mordisco()
+	chupetin.mordisco()
+	chupetin.mordisco()
+	chupetin.mordisco()
+	chupetin.mordisco()
+	chupetin.mordisco()
+	chupetin.mordisco()
+
+	assert.equals(1.977, chupetin.peso())
+
+	chupetin.mordisco()
+
+	assert.equals(1.977, chupetin.peso())
+	
+  }
+}
+describe "Oblea" {
+	const oblea = new Oblea()
+  test "Precio" {
+	assert.equals(5, oblea.precio())
+  }
+
+  test "peso" {
+	assert.equals(250, oblea.peso())
+  }
+
+  test "Sabor" {
+	assert.equals("Vainilla", oblea.sabor())
+  }
+
+  test "Libre de gluten" {
+	assert.notThat(oblea.libre_gluten())
+  }
+
+  test "Mordisco" {
+	oblea.mordisco()
+	assert.equals(125, oblea.peso())
+
+	oblea.mordisco()
+	assert.equals(62.5, oblea.peso())
+
+	oblea.mordisco()
+	assert.equals(46.875, oblea.peso())
+
+	oblea.mordisco()
+	assert.equals(35.15625, oblea.peso())
+
+  }
+}
+
+describe "Chocolatin" {
+	const chocolatin = new Chocolatin()
+
+  test "Peso inicial" {
+	chocolatin.peso(50)
+	assert.equals(50, chocolatin.peso())
+  }
+  test "Precio" {
+
+	chocolatin.peso(20)
+	assert.equals(10, chocolatin.precio())
+
+	chocolatin.peso(65)
+	assert.equals(32.5, chocolatin.precio())
+
+	chocolatin.peso(583)
+	assert.equals(291.5, chocolatin.precio())
+  }
+
+  test "Sabor" {
+	assert.equals("Chocolate", chocolatin.sabor())
+  }
+
+  test "Libre de gluten" {
+	assert.notThat(chocolatin.libre_gluten())
+  }
+
+  test "Mordisco" {
+	chocolatin.peso(68)
+	chocolatin.mordisco()
+	assert.equals(66, chocolatin.peso())
+
+	chocolatin.mordisco()
+	chocolatin.mordisco()
+	chocolatin.mordisco()
+	chocolatin.mordisco()
+	assert.equals(58, chocolatin.peso())
+  }
+}
+
+describe "Golosinas bañadas" {
+	const bombon = new Bombon()
+	const alfajor = new Alfajor()
+	const caramelo = new Caramelo()
+	const chupetin = new Chupetin()
+	const oblea = new Oblea()
+	const chocolatin = new Chocolatin()
+
+
+  test "Peso" {
+	const banio_bombon = new Golosinabaniada(golosina = bombon)
+	assert.equals(19, banio_bombon.peso())
+
+	const banio_alfajor = new Golosinabaniada(golosina = alfajor)
+	assert.equals(304, banio_alfajor.peso())
+
+	const banio_caramelo = new Golosinabaniada(golosina = caramelo)
+	assert.equals(9, banio_caramelo.peso())
+
+	const banio_chupetin = new Golosinabaniada(golosina = chupetin)
+	assert.equals(11, banio_chupetin.peso())
+
+	const banio_oblea = new Golosinabaniada(golosina = oblea)
+	assert.equals(254, banio_oblea.peso())
+
+	chocolatin.peso(50)
+	const banio_chocolatin = new Golosinabaniada(golosina = chocolatin)
+	assert.equals(54, banio_chocolatin.peso())
+	
+  }
+
+  test "Precio" {
+	const banio_bombon = new Golosinabaniada(golosina = bombon)
+	assert.equals(7, banio_bombon.precio())
+
+	const banio_alfajor = new Golosinabaniada(golosina = alfajor)
+	assert.equals(14, banio_alfajor.precio())
+
+	const banio_caramelo = new Golosinabaniada(golosina = caramelo)
+	assert.equals(3, banio_caramelo.precio())
+
+	const banio_chupetin = new Golosinabaniada(golosina = chupetin)
+	assert.equals(4, banio_chupetin.precio())
+
+	const banio_oblea = new Golosinabaniada(golosina = oblea)
+	assert.equals(7, banio_oblea.precio())
+
+	chocolatin.peso(50)
+	const banio_chocolatin = new Golosinabaniada(golosina = chocolatin)
+	assert.equals(27, banio_chocolatin.precio())
+  }
+
+  test "Sabor" {
+	const banio_bombon = new Golosinabaniada(golosina = bombon)
+	assert.equals("Frutilla", banio_bombon.sabor())
+
+	const banio_alfajor = new Golosinabaniada(golosina = alfajor)
+	assert.equals("Chocolate", banio_alfajor.sabor())
+
+	const banio_caramelo = new Golosinabaniada(golosina = caramelo)
+	assert.equals("Frutilla", banio_caramelo.sabor())
+
+	const banio_chupetin = new Golosinabaniada(golosina = chupetin)
+	assert.equals("Naranja", banio_chupetin.sabor())
+
+	const banio_oblea = new Golosinabaniada(golosina = oblea)
+	assert.equals("Vainilla", banio_oblea.sabor())
+
+
+	const banio_chocolatin = new Golosinabaniada(golosina = chocolatin)
+	assert.equals("Chocolate", banio_chocolatin.sabor())
+  }
+
+  test "Libre de Gluten" {
+    
+    const banio_bombon = new Golosinabaniada(golosina = bombon)
+    assert.that(banio_bombon.libre_gluten())
+
+    const banio_caramelo = new Golosinabaniada(golosina = caramelo)
+    assert.that(banio_caramelo.libre_gluten())
+
+    const banio_chupetin = new Golosinabaniada(golosina = chupetin)
+    assert.that(banio_chupetin.libre_gluten())
+
+    const banio_alfajor = new Golosinabaniada(golosina = alfajor)
+    assert.notThat(banio_alfajor.libre_gluten())
+
+    const banio_oblea = new Golosinabaniada(golosina = oblea)
+    assert.notThat(banio_oblea.libre_gluten())
+
+    const banio_chocolatin = new Golosinabaniada(golosina = chocolatin)
+    assert.notThat(banio_chocolatin.libre_gluten())
+  }
+
+  test "Mordisco" {
+	const banio_bombon = new Golosinabaniada(golosina = bombon)
+    banio_bombon.mordisco()
+	assert.equals(13, banio_bombon.peso())
+
+	banio_bombon.mordisco()
+	assert.equals(7.8, banio_bombon.peso())
+  }
+}
+
+describe "Tuttu-Frutti" {
+	const pastilla = new Tutti_frutti()
+  test "Peso inicial" {
+	assert.equals(5, pastilla.peso())
+  }
+
+  test "precio y Libre de gluten" {
+	pastilla.libre_gluten(false)
+	assert.notThat(pastilla.libre_gluten())
+	assert.equals(10, pastilla.precio())
+
+	pastilla.libre_gluten(true)
+	assert.that(pastilla.libre_gluten())
+	assert.equals(7, pastilla.precio())
+  }
+
+  test "Mordisco" {
+	assert.equals("Frutilla", pastilla.sabor())
+	pastilla.mordisco()
+
+	assert.equals("Chocolate", pastilla.sabor())
+	pastilla.mordisco()
+
+	assert.equals("Naranja", pastilla.sabor())
+	pastilla.mordisco()
+
+	assert.equals("Frutilla", pastilla.sabor())
+
+  }
+}
