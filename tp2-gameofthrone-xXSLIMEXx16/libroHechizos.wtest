@@ -1,0 +1,14 @@
+import gameOfThrone.*
+test "libro" {
+	castillo.agregarArtefactos(#{espada, armadura, collar})
+	//libro.hechizos([bendicion, invisibilidad,invocacion]) Se puede settear aca o en el wlk
+	libro.hechizos([bendicion, invisibilidad,invocacion])
+	daenerys.encontrar(libro)
+	assert.equals(4, libro.poder(daenerys))
+	daenerys.batalla()
+	assert.equals(6, libro.poder(daenerys))
+	daenerys.batalla()
+	assert.equals(7, libro.poder(daenerys))
+	daenerys.batalla()
+	assert.equals(0, libro.poder(daenerys))
+}

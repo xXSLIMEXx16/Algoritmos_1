@@ -1,0 +1,35 @@
+import gameOfThrone.*
+test "enemigos vencibles y moradas conquistables" {
+	daenerys.capacidad(3)
+	daenerys.encontrar(espada)
+	daenerys.encontrar(armadura)
+	daenerys.encontrar(collar)
+	
+	assert.equals(#{cersei, arya}, westeros.enemigosVencibles(daenerys))
+	assert.equals(#{kingsLanding, braavos}, westeros.moradasConquistables(daenerys))
+}
+
+test "poderoso" {
+	daenerys.capacidad(3)
+	daenerys.encontrar(espada)
+	daenerys.encontrar(armadura)
+	daenerys.encontrar(collar)
+	
+	assert.notThat(westeros.poderoso(daenerys))
+	daenerys.poderBase(10)
+	assert.that(westeros.poderoso(daenerys))
+}
+
+test "artefacto fatal" {
+	daenerys.capacidad(3)
+	daenerys.encontrar(espada)
+	daenerys.encontrar(armadura)
+	daenerys.encontrar(collar)
+	daenerys.poderBase(15)
+	
+	assert.that(daenerys.tieneArmaFatal(arya))
+	assert.equals(espada, daenerys.armaFatal(arya))
+	
+	assert.notThat(daenerys.tieneArmaFatal(jon))
+	assert.throwsException({daenerys.armaFatal(jon)})
+}

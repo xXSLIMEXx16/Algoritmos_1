@@ -1,0 +1,45 @@
+import gameOfThrone.*
+
+test "batalla" {
+	daenerys.capacidad(3)
+	daenerys.encontrar(espada)
+	daenerys.encontrar(armadura)
+	daenerys.encontrar(collar)
+	
+	assert.equals( 5 , daenerys.poderBase())
+	assert.equals( 5 , espada.poder(daenerys))
+	assert.equals( 6 , armadura.poder(daenerys))
+	assert.equals( 3 , collar.poder(daenerys))
+	
+	daenerys.batalla()
+	
+	assert.equals( 6 , daenerys.poderBase())
+	assert.equals( 3 , espada.poder(daenerys))
+	assert.equals( 6 , armadura.poder(daenerys))
+	assert.equals( 3 , collar.poder(daenerys))
+
+	daenerys.batalla()
+	
+	assert.equals( 7 , daenerys.poderBase())
+	assert.equals( 3.5 , espada.poder(daenerys))
+	assert.equals( 6 , armadura.poder(daenerys))
+	assert.equals( 5 , collar.poder(daenerys))
+
+	daenerys.batalla()
+	
+	assert.equals( 8 , daenerys.poderBase())
+	assert.equals( 4 , espada.poder(daenerys))
+	assert.equals( 6 , armadura.poder(daenerys))
+	assert.equals( 6 , collar.poder(daenerys))
+	
+}
+
+test "poder de daenerys" {
+
+	daenerys.capacidad(3)
+	daenerys.encontrar(espada)
+	daenerys.encontrar(armadura)
+	daenerys.encontrar(collar)
+	assert.equals(19, daenerys.poder())
+	
+}
