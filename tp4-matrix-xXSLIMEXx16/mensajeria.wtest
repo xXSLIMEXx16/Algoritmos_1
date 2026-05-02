@@ -1,0 +1,47 @@
+import mensajeria.*
+import mensajeros.*
+  
+describe "Tests de la Mensajería " {
+
+	test "Contratar a Neo y Trinity hace que la empresa tenga 2 empleados" {
+		mensajeria.despedirATodos() 
+		mensajeria.contratar(neo)
+		mensajeria.contratar(trinity)
+		assert.equals(2, mensajeria.empleados().size()) 
+	}
+
+	test "La mensajería es grande si contrato a Morfeo, Neo y Trinity" {
+		mensajeria.despedirATodos()
+		mensajeria.contratar(morfeo)
+		mensajeria.contratar(neo)
+		mensajeria.contratar(trinity)
+		assert.that(mensajeria.esGrande())
+	}
+
+	test "El peso del último mensajero (Trinity) es 900" {
+		mensajeria.despedirATodos()
+		mensajeria.contratar(neo)
+		mensajeria.contratar(trinity)
+		assert.equals(900, mensajeria.pesoDelUltimo())
+	}
+
+	test "Si el primer empleado es Neo con crédito, puede entregar un paquete pago en la Matrix" {
+		mensajeria.despedirATodos()
+		mensajeria.contratar(neo)
+		neo.tieneCredito(true)
+		paquete.pagar()
+		paquete.destino(laMatrix)
+		
+		assert.that(mensajeria.puedeEntregarPrimerEmpleado(paquete))
+	}
+}
+
+describe "3 " {
+    test "Paqueton viajero a dos destinos no puede ser entregado si no está totalmente pago" {
+    paquetonViajero.destinos([puente, laMatrix])
+    paquetonViajero.pagar(150) 
+    
+    assert.notThat(paquetonViajero.estaPago())
+    assert.notThat(paquetonViajero.puedeSerEntregadoPor(trinity))
+}
+}
